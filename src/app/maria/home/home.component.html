@@ -1,0 +1,50 @@
+<!-- Highlight Card -->
+
+<h2>Primera parte</h2>
+<p>Maquetar un formulario lo más idéntico posible al que se adjunta en este correo teniendo en
+cuenta los detalles del mismo.</p>
+
+
+
+<h2>Segunda parte</h2>
+<p>Realizar un pequeño proyecto en Angular / React que contenga el formulario adjunto al final de esta seccion y llevar a cabo las siguientes acciones :</p>
+<ul>
+  <li><strong>Crear usuario :</strong> En un caso de que el formulario no contenga datos, al hacer click en "Modificar tus
+  datos" realizar una petición POST al servidor donde la respuesta sea una respuesta correcta con
+  los datos que se han introducido en el formulario.</li>
+  <li><strong>Obtener usuario :</strong> Realizar una petición GET al servidor pasando un id (Por ahora solo existe el id
+  1) y mostrar los datos en el formulario como corresponden.</li>
+  <li><strong>Editar usuario :</strong> Modificar los datos que se obtienen del servidor y al hacer click en "Modificar tus
+  datos", realizar una petición PUT con los datos y el servidor devuelva una respuesta correcta con
+  los datos modificados.</li>
+</ul>
+
+<p><strong>Servidor :</strong> <a target="_parent" href="https://my-json-server.typicode.com/volkz/technical-form/users">https://my-json-server.typicode.com/volkz/technical-form/users</a></p>
+<pre><code>
+  {{'[{'}}
+      "id": 1,
+      "name": "John",
+      "surname": "Doe",
+      "identification": "48295522M",
+      "document_type": "DNI",
+      "gender": "man",
+      "email": "ekaterina@gmail.com",
+      "password": "QwErTy@YtReWq"
+    {{'}]'}}
+</code>
+</pre>
+<p><strong>Endpoints :</strong></p>
+
+<ul>
+  <li>GET /users</li>
+  <li>GET /users/:id</li>
+  <li>POST /users</li>
+  <li>PUT /users/:id</li>
+</ul>
+
+
+
+<br>
+<img width="100%" src="./assets/img/prueba.jpg" />
+
+<router-outlet></router-outlet>

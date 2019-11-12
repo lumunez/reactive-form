@@ -1,0 +1,9 @@
+<h2>
+  The secret
+</h2>
+<button (click)="getDataRegistros()">Get from url api</button>
+<button (click)="getDatabyUser(2)">Get from url api</button>
+<button (click)="putJsonData(2)">Update PUT from url api</button>
+<pre>
+{{ data$ | async | json }}
+</pre>

@@ -1,0 +1,67 @@
+
+public getUserJson (){
+  this.apiService.getUsuariosListado().subscribe((userdata)=>{
+    console.log(userdata);
+  });
+}
+
+
+//public postUserJson (){
+//  return this.httpClient.post('https://my-json-server.typicode.com/volkz/technical-form/users').subscribe((data)=>{
+//    console.log(data);
+//    });
+//}
+
+
+public putByUserJson(id, userdata) {
+  const userid = 1;
+  const urlTestMaria = 'https://my-json-server.typicode.com/volkz/technical-form/users/';
+  this.httpClient.get(urlTestMaria+userid).subscribe((userdata)=>{
+    console.log(userdata);
+    });
+}
+
+public getByUserJson(id, userdata) {
+  const userid = 1;
+  const urlTestMaria = 'https://my-json-server.typicode.com/volkz/technical-form/users/';
+  this.httpClient.get(urlTestMaria+userid).subscribe((userdata)=>{
+    console.log(userdata);
+    });
+    this.form.setValue({
+      document_type: "DNI",
+      email: "ekaterina@gmail.com",
+      genero: "man",
+      identification: "48295522M",
+      name: "John",
+      password: "QwErTy@YtReWq",
+      surname: "Doe123",
+      datedd: "",
+      datemm: "",
+      dateyyyy: "",
+      reemail: "",
+      repassword: ""
+    });
+
+    this.form.setValue({
+      document_type: "DNI",
+      email: "ekaterina@gmail.com",
+      gender: "man",
+      identification: "48295522M",
+      name: "John",
+      password: "QwErTy@YtReWq",
+      surname: "Doe123",
+      datedd: "",
+      datemm: "",
+      dateyyyy: "",
+      reemail: "",
+      repassword: ""
+    });
+}
+
+
+
+//aádir valores por defecto
+// this.miFormulario.setValue(this.usuario);
+//suscripcion
+//this.miFormulario.controls['username'].valueChanges.subscribe(data => {
+//  console.log(data);});
