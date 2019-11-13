@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FrontendtestComponent } from './frontendtest/frontendtest.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: 'index',
-    component: FrontendtestComponent
+    component: HomeComponent
   },
   {
     path: '**',
-    redirectTo: 'frontendtest'
+    redirectTo: 'HomeComponent'
   }
 ];
 

@@ -6,7 +6,7 @@
             <div class="container">
 
 
-              <form [formGroup]="form" novalidate>
+              <form [formGroup]="form" novalidate class="form-maria">
                 <h5 class="bd-title bd-lead pb-3" id="content">Tus datos personales</h5>
                 <div class="row">
                   <!-- app.0.form.name -->
@@ -136,7 +136,7 @@
                   <div class="col">
                     <div class="row justify-content-end">
                       <div class="col-auto">
-                        <button (click)="validaFormCompleto()" type="submit" class="btn p-0.5 mb-0 bt-maria"> MODIFICAR TUS DATOS</button>
+                        <button (click)="udateBTN()" type="submit" class="btn p-0.5 mb-0 btn-simple"> MODIFICAR TUS DATOS</button>
                       </div>
                     </div>
                   </div>
@@ -171,7 +171,7 @@
                   <div class="col">
                     <div class="row justify-content-end">
                       <div class="col-auto">
-                        <button (click)="postUserJson( )" type="submit" class="btn p-0.5 mb-0 bt-maria"> CAMBIAR CONTRASEÑA</button>
+                        <button (click)="udateBTN()" type="submit" class="btn p-0.5 mb-0 btn-simple"> CAMBIAR CONTRASEÑA</button>
                       </div>
                     </div>
                   </div>
@@ -185,29 +185,21 @@
 
               <div class=" mt-3">
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-secondary" (click)="getDataRegistros()">Validar Conex REST</button>
-                  <button type="button" class="btn btn-secondary" (click)="reactiveForm()">Create New User</button>
-                  <button type="button" class="btn btn-secondary" (click)="getDatabyUser(2)">Call UserbyId</button>
-                  <button type="button" class="btn btn-secondary" (click)="saveUser()">Update User</button>
+                  <button type="button" class="btn btn-secondary" (click)="getDataRegistros()">Validate REST conex</button>
+                  <button type="button" class="btn btn-secondary" (click)="getUserById(2)">Get User by Id</button>
                   <button type="button" class="btn btn-secondary" (click)="resetform()">Reset form</button>
                 </div>
 
               </div>
-
               <div class="row">
+                <div class="col mt-5">
+                  <!-- Terminal -->
+                  <div class="terminal">
+                    <!-- <pre>Form value: {{ form.value | json }}</pre> -->
+                    <!--  <pre>StatusForm: {{ form.status | json }}</pre> -->
+                    <pre>Response: {{ data$ | async | json }}</pre>
+                  </div>
 
-                <!-- app.0.form.data.json -->
-                <div class="col mt-5">
-                  <p class="bd-lead"  style="font-size: 10px!important;"><strong>Form value: </strong>{{ form.value | json }}</p>
-                  <p class="bd-lead"  style="font-size: 10px!important"><strong>StatusForm: </strong>{{ form.status | json }}</p>
-                </div>
-              </div>
-              <div class="row">
-                <h5 class="bd-title bd-lead pb-3" id="content">output:</h5>
-                <div class="col mt-5">
-                  <pre>
-                  {{ data$ | async | json }}
-                  </pre>
                 </div>
               </div>
 

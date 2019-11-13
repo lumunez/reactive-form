@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FrontendtestComponent } from './frontendtest/frontendtest.component';
+import { HomeComponent } from './home/home.component';
 import { MariaRoutingModule } from './maria-routing.module';
 
 @NgModule({
-  declarations: [FrontendtestComponent],
+  declarations: [HomeComponent],
   imports: [CommonModule, MariaRoutingModule],
   providers: []
 })

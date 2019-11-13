@@ -4,10 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users/users.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { DataComponent } from './data/data.component';
 
 @NgModule({
-  declarations: [UsersComponent, DataComponent],
+  declarations: [UsersComponent],
   imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule, HttpClientModule],
   providers: []
 })

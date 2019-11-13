@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { map,tap } from 'rxjs/operators';
 
 //import { User } from './user';
+import { UserService } from '../../_service/user/user.service';
+import { User } from '../../_service/user/user';
 import {Item} from   '../../_service/document/types_document_type';
 import {ITEMS} from  '../../_service/document/types_document_type_data';
 import {Itemg} from  '../../_service/gender/gener_user';
@@ -18,9 +24,10 @@ export class UsersComponent implements OnInit {
   //rest
   private protectedUrl = 'https://my-json-server.typicode.com/volkz/technical-form/users/';
   private httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-  //public data$: Observable<any>;
-  //public dataNewUser$: Observable<any>;
-  //public errorMessage$: string;
+  public data$: Observable<any>;
+  public dataNewUser$: Observable<any>;
+  public errorMessage$: string;
+  public userId: Observable<any>;
 
 //form-select
   public optiopnTypeSel;
@@ -34,12 +41,14 @@ export class UsersComponent implements OnInit {
   public generSelecteditemsList = ITEMSG;
   public generSelected = "0";
   submitted = false;
+  dataModel;
   form;
 
   constructor(
     private formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    private apiService: ApiService,
+    //private httpHeaders: HttpHeaders,
+    private userService: UserService,
     public router: Router
   ){
     this.form = formBuilder.group({
@@ -59,56 +68,43 @@ export class UsersComponent implements OnInit {
     //this.data = new UserData();
   }
 
-  ngOnInit() {} // You may show error message on the template
+  ngOnInit() {
+    this.data$ = this.httpClient.get(this.protectedUrl).pipe(map((res) => {return res}));
+  } // You may show error message on the template
 
-
-  getSelectedOptiopnType(){
-    this.optiopnTypeSel = ITEMS.find(Item => Item.value === this.optionTypeDocumentSelected);
-    this.optionTypeDocumentSelectedString = JSON.stringify(this.optiopnTypeSel);
-  }
-  onItemTypeChange(item){
-    this.getSelectedOptiopnType();
-  }
-  getGenerSelected(){
-    this.generSel = ITEMSG.find(Itemg => Itemg.valor === this.generSelected);
-    this.generSelectedString = JSON.stringify(this.generSel);
-  }
-  onItemGenerChange(Itemg){
-    this.getGenerSelected();
+  public getDataRegistros() {
+    this.data$ = this.httpClient.get(this.protectedUrl).pipe(map((res) => {return res}));
   }
 
+  private getUserById(id) {
+    this.data$ = this.httpClient.get(this.protectedUrl+id).pipe(map((res) => {return res}));
+    return this.httpClient.get(this.protectedUrl+id).subscribe((userdata : any)=>{
+      console.log(userdata);
+      this.form.get('name').setValue(userdata.name);
+      this.form.get('surname').setValue(userdata.surname);
+      this.form.get('identification').setValue(userdata.identification);
+      this.form.get('document_type').setValue(userdata.document_type);
+      this.form.get('email').setValue(userdata.email);
+      this.form.get('password').setValue(userdata.password);
+      this.form.get('gender').setValue(userdata.gender);
+    });
+  }
 
-  validaFormCompleto() {
-    this.submitted = true;
-    if (this.form.invalid) {
-        return;
+  public udateBTN() {
+    if ((this.form.value === "") || this.form.value === null){
+      this.data$ = this.httpClient.post(this.protectedUrl, this.form.value).pipe(map((res) => {return res}));
     }
-    console.log(JSON.stringify(this.form.value, null, 4));
-  };
-  //ok
+    else {
+      this.data$ = this.httpClient.put(this.protectedUrl+2, this.form.value).pipe(map((res) => {return res}));
+    }
+  }
 
   resetform(){
     this.form.reset();
   }
 
-  public getUserJson(){
-    this.apiService.getUsuariosListado().subscribe((userdata)=>{
-      console.log(userdata);
-    });
-  }
-
-  public postUserJson() {
-    const urlTestMaria = 'https://my-json-server.typicode.com/volkz/technical-form/users';
-    const user = this.form.value;
-    this.httpClient.post<any>(urlTestMaria, user).subscribe(res => {
-      console.log(res);
-    });
-  }
-
-
-
-
 }
+
 
 
 //aádir valores por defecto
